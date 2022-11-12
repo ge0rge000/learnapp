@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     //register
     public function register(Request $req){
-        
+
         $messages = [
             'unique' => 'انت مسجل من قبل',
           ];
@@ -24,7 +24,7 @@ class AuthController extends Controller
                 'year_type'=>'required'
             ],$messages);
 
-            if(User::where('mobile_phone',$req->mobile_phone)->where('device_id',$req->device_id)->exists()){
+            if(User::where('mobile_phone',$req->mobile_phone)->exists()||User::where('device_id',$req->device_id)->exists()){
                 return response(
                     ['message'=>'انت مسجل من قبل ',
                      'status'=> false,
